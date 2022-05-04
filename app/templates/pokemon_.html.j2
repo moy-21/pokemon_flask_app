@@ -6,39 +6,44 @@ Pokemon Search
 {% block content %}
 
 <h1>Pokemon Search</h1>
-<form action="/pokemon_" method="POST">
-  <div class="mb-3">
-    <label for="Pokemon" class="form-label">Pokemon</label>
-    <input type="text" name="pokemon" class="form-control" id="pokemon">
+<form action='/pokemon_' method="POST">
+  {{form.hidden_tag()}}
+  <div>
+  {{form.pokemon.label(class="form-label")}}
+  {{form.pokemon(class="form-control")}}
+  {% if error %}
+    <small style="color:red;">{{error}}</small>
+  {% endif %}
   </div>
-  <div style="color:red"><small>{{error}}</small></div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+  <br>
+  <div>
+  {{form.submit(class="btn btn-primary form-control")}}
+  </div>
 
 {%if pokemon_dic %}
-  <table class="table table-striped table-hover table-dark">
+<table class="table table-striped table-hover table-dark">
     <thead>
-      <tr>
+    <tr>
         <th scope="col">Name</th>
         <th scope="col">Base XP</th>
         <th scope="col">Defense</th>
         <th scope="col">Attack</th>
         <th scope="col">Sprite</th>
         <th scope="col">HP</th>
-      </tr>
+    </tr>
     </thead>
     <tbody>
-      <tr>
+    <tr>
         <th scope="row">{{pokemon_dic['name']}}</th>
         <td>{{pokemon_dic.base_}}</td>
         <td>{{pokemon_dic.defense}}</td>
         <td>{{pokemon_dic.attack}}</td>
         <td>{{pokemon_dic.sprite}}</td>
         <td>{{pokemon_dic.hp}}</td>
-      </tr>
+    </tr>
     </tbody>
-    
-  </table>
+        
+</table>
 {%endif%}
 
 
