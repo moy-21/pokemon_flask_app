@@ -1,6 +1,14 @@
 .container{
-    margin-top: 50px;
-    background-color: red;
-    color: black;
+    margin-top: 60px;
+    width: 60%;
+    background-color: black;
+    color: white;
     padding: 30px;
 }
+body {
+    background-image: url('https://res.cloudinary.com/dipcloqy3/image/upload/v1651873172/EG7bjGp5PDvZ8golrKh3m84n-A9khC5jDE-hqqoVfvA_s9bvmo.jpg');
+    height: 120vh;
+    background-attachment: fixed;
+}
+
+

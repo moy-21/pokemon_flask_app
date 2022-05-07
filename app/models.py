@@ -10,6 +10,7 @@ class User(UserMixin, db.Model):
     email =  db.Column(db.String, unique=True, index=True)
     password =  db.Column(db.String)
     created_on = db.Column(db.DateTime, default=dt.utcnow)
+    icon =  db.Column(db.Integer)
 
     # should return a unique identifing string
     def __repr__(self):
@@ -32,6 +33,21 @@ class User(UserMixin, db.Model):
         self.last_name = data['last_name']
         self.email=data['email']
         self.password = self.hash_password(data['password'])
+        self.icon = data['icon']
+
+    def get_icon_url(self):
+        r1 = 'https://res.cloudinary.com/dipcloqy3/image/upload/v1651867932/character3_eqvcd2.png'
+        r2 = 'https://res.cloudinary.com/dipcloqy3/image/upload/v1651869917/character4_hcdgai.png'
+        r3 = 'https://res.cloudinary.com/dipcloqy3/image/upload/v1651867932/character1_rn81i8.webp'
+        if self.icon == 1:
+            return r1
+        elif self.icon == 2:
+            return r2
+        elif self.icon == 3:
+            return r3
+        else:
+            return None
+        
 
     # save the user to the database
     def save(self):

@@ -22,11 +22,13 @@ Pokemon Search
   </div>
   <br>
   <div>
-  {{form.submit(class="btn btn-primary form-control")}}
+  {{form.submit(class="btn btn-danger form-control btn-outline-light")}}
   </div>
 
 {%if pokemon_dic %}
 <br>
+<div class = "d-flex">
+<img src = "{{pokemon_dic.sprite}}" style= "height:260px" class= "float-start">
 <table class="table table-striped table-hover table-dark">
     <thead>
     <tr>
@@ -34,22 +36,21 @@ Pokemon Search
         <th scope="col">Base XP</th>
         <th scope="col">Defense</th>
         <th scope="col">Attack</th>
-        <th scope="col">Sprite</th>
         <th scope="col">HP</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <th scope="row">{{pokemon_dic['name']}}</th>
+        <th scope="row">{{pokemon_dic['name'].title()}}</th>
         <td>{{pokemon_dic.base_}}</td>
         <td>{{pokemon_dic.defense}}</td>
         <td>{{pokemon_dic.attack}}</td>
-        <td>{{pokemon_dic.sprite}}</td>
         <td>{{pokemon_dic.hp}}</td>
     </tr>
     </tbody>
         
 </table>
+</div>
 {%endif%}
 
 
