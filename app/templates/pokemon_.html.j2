@@ -25,10 +25,10 @@ Pokemon Search
   {{form.submit(class="btn btn-danger form-control btn-outline-light")}}
   </div>
 
-{%if pokemon_dic %}
+{%if poke %}
 <br>
-<div class = "d-flex">
-<img src = "{{pokemon_dic.sprite}}" style= "height:260px" class= "float-start">
+<div class = "d-flex justify-content-around">
+<img src = "{{poke.sprite}}" style= "height:260px" class= "float-start">
 <table class="table table-striped table-hover table-dark">
     <thead>
     <tr>
@@ -41,15 +41,21 @@ Pokemon Search
     </thead>
     <tbody>
     <tr>
-        <th scope="row">{{pokemon_dic['name'].title()}}</th>
-        <td>{{pokemon_dic.base_}}</td>
-        <td>{{pokemon_dic.defense}}</td>
-        <td>{{pokemon_dic.attack}}</td>
-        <td>{{pokemon_dic.hp}}</td>
+        <th scope="row">{{poke.name.title()}}</th>
+        <td>{{poke.base_}}</td>
+        <td>{{poke.defense}}</td>
+        <td>{{poke.attack}}</td>
+        <td>{{poke.hp}}</td>
     </tr>
     </tbody>
         
 </table>
+
+<div class = "d-flex align-items-center">
+<a href="{{url_for('main.catch_poke', name = poke.name)}}" class = "btn btn-danger form-control btn-outline-light" >Catch</a>
+</div>
+
+
 </div>
 {%endif%}
 

@@ -2,6 +2,12 @@ from app import db, login
 from flask_login import UserMixin # IS ONLY FOR THE USER MODEL!!!!
 from datetime import datetime as dt
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import CheckConstraint
+
+class Deck(db.Model):
+    poke_id = db.Column(db.Integer, db.ForeignKey('pokemon.poke_id'), primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
+
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -11,6 +17,11 @@ class User(UserMixin, db.Model):
     password =  db.Column(db.String)
     created_on = db.Column(db.DateTime, default=dt.utcnow)
     icon =  db.Column(db.Integer)
+    pokemen = db.relationship('Pokemon',
+        secondary = 'deck',
+        backref = 'users',
+        lazy = 'dynamic'
+    )
 
     # should return a unique identifing string
     def __repr__(self):
@@ -47,12 +58,38 @@ class User(UserMixin, db.Model):
             return r3
         else:
             return None
+
+    def catch_poke(self, poke):
+        self.pokemen.append(poke)
+        db.session.commit()
+
         
 
     # save the user to the database
     def save(self):
         db.session.add(self) #adds the user to the db session
         db.session.commit() #save everythig in the session to the db
+
+class Pokemon(db.Model):
+    poke_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, unique=True)
+    hp =  db.Column(db.Integer)
+    attack =  db.Column(db.Integer)
+    base_ = db.Column(db.Integer)
+    sprite = db.Column(db.String)
+    defense =  db.Column(db.Integer)
+
+    def __repr__(self):
+        return f'<Pokemon: {self.poke_id}|{self.name}'
+
+    def delete_poke(self):
+        db.session.delete(self)
+        db.session.commit()
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+
     
 @login.user_loader
 def load_user(id):
