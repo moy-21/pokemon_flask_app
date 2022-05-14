@@ -1,0 +1,16 @@
+{% extends "base.html.j2" %}
+{% block title %}
+Squad
+{% endblock %}
+{% block content%}
+<h1 class = "d-flex justify-content-center text-white">Squad</h1>
+<br>
+<div class="d-flex align-content">
+    {%for poke in current_user.pokemen %}
+    {% include 'includes/poke_card.html.j2' %}
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}

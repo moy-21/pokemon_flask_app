@@ -1,0 +1,18 @@
+{% extends "base.html.j2" %}
+{% block title %}
+Battle
+{% endblock %}
+{% block content%}
+<h1 class= "d-flex justify-content-center text-white">Battle Home</h1>
+<br>
+<div class= "d-flex justify-content-center">
+    {%for user in users%}
+    {%if user.pokemen%}
+        {% include 'includes/user.html.j2' %}
+    {%endif%}
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}

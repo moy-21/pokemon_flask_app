@@ -1,0 +1,18 @@
+<div class="card bg-dark" style="max-width: 18rem;">
+  <img src="{{poke.sprite}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title chakra text-white d-flex justify-content-center">{{poke.name.title()}}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item bg-secondary chakra">XP: {{poke.base_}}</li>
+    <li class="list-group-item bg-success chakra">HP: {{poke.hp}}</li>
+    <li class="list-group-item bg-danger chakra">ATT: {{poke.attack}}</li>
+    <li class="list-group-item bg-primary chakra">DEF:{{poke.defense}}</li>
+  </ul>
+  {%if current_user.pokemen%}
+  <div class="card-body">
+    <a href="{{url_for('main.release_poke', name = poke.name)}}" class="btn btn-warning chakra">Remove</a>
+    {# <a href="#" class="card-link"></a> #}
+  </div>
+  {%endif%}
+</div>

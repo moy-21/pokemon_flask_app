@@ -1,0 +1,67 @@
+{% extends 'base.html.j2' %}
+
+{%block css%}
+ <link rel="stylesheet" href="{{url_for('static',filename='css/pokemon_.css')}}">
+{%endblock %}
+
+{% block title %}
+Pokemon Search
+{% endblock %}
+
+{% block content %}
+<div class="poke_search">
+<h1>Pokemon Search</h1>
+<form action='/pokemon_' method="POST">
+  {{form.hidden_tag()}}
+  <div>
+  {{form.pokemon.label(class="form-label")}}
+  {{form.pokemon(class="form-control")}}
+  {% if error %}
+    <small style="color:red;">{{error}}</small>
+  {% endif %}
+  </div>
+  <br>
+  <div>
+  {{form.submit(class="btn btn-danger form-control btn-outline-light")}}
+  </div>
+
+{%if poke %}
+<br>
+<div class = "d-flex justify-content-around">
+<img src = "{{poke.sprite}}" style= "height:260px" class= "float-start">
+<table class="table table-striped table-hover table-dark">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Base XP</th>
+        <th scope="col">Defense</th>
+        <th scope="col">Attack</th>
+        <th scope="col">HP</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">{{poke.name.title()}}</th>
+        <td>{{poke.base_}}</td>
+        <td>{{poke.defense}}</td>
+        <td>{{poke.attack}}</td>
+        <td>{{poke.hp}}</td>
+    </tr>
+    </tbody>
+        
+</table>
+
+<div class = "d-flex align-items-center">
+<a href="{{url_for('main.catch_poke', name = poke.name)}}" class = "btn btn-primary form-control btn-outline-light" >Catch</a>
+{% if poke in current_user.pokemen%}
+<a href="{{url_for('main.release_poke', name = poke.name)}}" class = "btn btn-danger form-control btn-outline-light" >Release</a>
+{% endif %}
+
+</div>
+
+
+</div>
+{%endif%}
+
+</div>
+{% endblock %}

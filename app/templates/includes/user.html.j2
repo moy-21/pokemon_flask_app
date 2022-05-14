@@ -1,0 +1,27 @@
+<div class="card mb-3 bg-dark text-white" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+    <br>
+    <div class="d-flex justify-content-end">
+    <img src="{{user.get_icon_url()}}" class="img-fluid rounded-start" style= "height: 300px "alt="...">
+    </div>
+      <br>
+      <ul style="list-style: none;">
+            <li class= "chakra">{{user.first_name}} {{user.last_name}}</li>
+            <li class= "chakra">Wins: {{user.wins}}</li>
+            <li class= "chakra">Loses: {{user.loses}}</li>
+      </ul>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="d-flex card-title justify-content-center chakra">{{user.first_name}}'s Team</h5>
+        {% include 'includes/carousel.html.j2' %}
+      </div>
+      <br>
+      <div>
+        <a href="{{url_for('main.battle_arena', user_id = user.id )}}" class = "btn btn-danger form-control btn-outline-light chakra" >Battle</a>
+      </div>
+    </div>
+  </div>
+</div>
+
