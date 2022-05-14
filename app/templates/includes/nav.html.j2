@@ -7,25 +7,27 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 {%if current_user.is_authenticated%}
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
-                <a class="nav-link" href="{{url_for('main.pokemon_')}}">Pokemon Search</a>
+                <a class="nav-link active chakra" aria-current="page" href="/">Home</a>
+                <a class="nav-link chakra" href="{{url_for('main.pokemon_')}}">Add Poke</a>
+                <a class="nav-link chakra" href="{{url_for('main.battle_home')}}">Battle</a>
+
                 {%else%}
-                <a class="nav-link" href="{{url_for('auth.login')}}">Login</a>
-                <a class="nav-link" href="{{url_for('auth.register')}}">Register</a>
+                <a class="nav-link chakra" href="{{url_for('auth.login')}}">Login</a>
+                <a class="nav-link chakra" href="{{url_for('auth.register')}}">Register</a>
                 {%endif%}
             </div>
                 {% if current_user.is_authenticated %}
                 <ul class="navbar-nav ms-auto align-items-center">
-                <a href='#'>
+                <a href="{{url_for('main.my_poke')}}" >
                     <img src="{{current_user.get_icon_url()}}" style="height:80px;">
                 </a>
                 <li class="nav-item">
                 <div class="row">
                 <div class="col-12">    
-                    <a class="nav-link" href="{{url_for('auth.edit_profile')}}"><i class="bi bi-gear text-danger" style="font-size: 1.5rem"></i></a>
+                    <a class="nav-link d-flex justify-content-center" href="{{url_for('auth.edit_profile')}}"><i class="bi bi-gear text-danger" style="font-size: 1.5rem"></i></a>
                 </div>
                 <div class="col-12">
-                    <a class="nav-link" href="{{url_for('auth.logout')}}"><i class="bi bi-box-arrow-right text-danger" style="font-size: 1.5rem"></i></a>
+                    <a class="nav-link d-flex justify-content-center" href="{{url_for('auth.logout')}}"><i class="bi bi-box-arrow-right text-danger" style="font-size: 1.5rem"></i></a>
                 </div>
                 </div>
                     

@@ -1,0 +1,52 @@
+{% extends "base.html.j2" %}
+{% block title %}
+
+{% endblock %}
+{% block content%}
+<div class="row">
+    <div class="col-2">
+    {%for poke in current_user.pokemen %}
+    <br>
+    <div class="">
+    <h4 class="d-flex justify-content-center text-white">{{poke.name.title()}}</h4>
+    <img src="{{poke.sprite}}" class="card-img-top" alt="..." style= "transform: scaleX(-1);">
+    <div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item bg-dark text-secondary chakra">XP: {{poke.base_}}</li>
+            <li class="list-group-item bg-dark text-secondary chakra">HP: {{poke.hp}}</li>
+            <li class="list-group-item bg-dark text-secondary chakra">ATT: {{poke.attack}}</li>
+            <li class="list-group-item bg-dark text-secondary chakra">DEF:{{poke.defense}}</li>
+        </ul>
+    </div>
+    </div>
+    {% endfor %}
+    </div>
+    <div class="d-flex col-8 align-items-center">
+    <img src="https://res.cloudinary.com/dipcloqy3/image/upload/v1652488455/Versus-Battle-Transparent-PNG_ufblkf.png" class="card-img-top d-flex align-items-center" alt="...">
+    </div>
+    <div class="col-2">
+    {%for poke in user.pokemen %}
+    <br>
+    <div class="">
+    <h4 class="d-flex justify-content-center text-white">{{poke.name.title()}}</h4>
+    <img src="{{poke.sprite}}" class="card-img-top" alt="..." style= "">
+    <div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item bg-dark text-secondary chakra">XP: {{poke.base_}}</li>
+            <li class="list-group-item bg-dark text-secondary chakra">HP: {{poke.hp}}</li>
+            <li class="list-group-item bg-dark text-secondary chakra">ATT: {{poke.attack}}</li>
+            <li class="list-group-item bg-dark text-secondary chakra">DEF:{{poke.defense}}</li>
+        </ul>
+    </div>
+    </div>
+    {% endfor %}
+    </div>
+
+</div>
+<br>
+<br>
+<a href="{{url_for('main.battle', user_id = user.id )}}" class = "btn btn-warning form-control btn-outline-light" >Battle</a>
+
+
+
+{% endblock %}

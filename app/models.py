@@ -9,6 +9,8 @@ class Deck(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
 
+
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String)
@@ -22,6 +24,8 @@ class User(UserMixin, db.Model):
         backref = 'users',
         lazy = 'dynamic'
     )
+    wins = db.Column(db.Integer)
+    loses = db.Column(db.Integer)
 
     # should return a unique identifing string
     def __repr__(self):
@@ -64,11 +68,35 @@ class User(UserMixin, db.Model):
         db.session.commit()
 
         
+    def release_poke(self, poke):
+        if self.pokemen:
+            self.pokemen.remove(poke)
+            db.session.commit()
 
     # save the user to the database
     def save(self):
         db.session.add(self) #adds the user to the db session
         db.session.commit() #save everythig in the session to the db
+
+    def get_sprite(self, poke):
+        return
+
+    def add_win(self, win):
+        if self.wins:
+            self.wins = self.wins + win
+            db.session.commit()
+        else:
+            self.wins = 1
+            db.session.commit()
+
+    def add_loss(self, loss):
+        if self.loses:
+            self.loses = self.loses + loss
+            db.session.commit()
+        else:
+            self.loses = 1
+            db.session.commit()
+
 
 class Pokemon(db.Model):
     poke_id = db.Column(db.Integer, primary_key=True)

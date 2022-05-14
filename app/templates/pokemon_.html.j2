@@ -9,7 +9,7 @@ Pokemon Search
 {% endblock %}
 
 {% block content %}
-
+<div class="poke_search">
 <h1>Pokemon Search</h1>
 <form action='/pokemon_' method="POST">
   {{form.hidden_tag()}}
@@ -52,12 +52,16 @@ Pokemon Search
 </table>
 
 <div class = "d-flex align-items-center">
-<a href="{{url_for('main.catch_poke', name = poke.name)}}" class = "btn btn-danger form-control btn-outline-light" >Catch</a>
+<a href="{{url_for('main.catch_poke', name = poke.name)}}" class = "btn btn-primary form-control btn-outline-light" >Catch</a>
+{% if poke in current_user.pokemen%}
+<a href="{{url_for('main.release_poke', name = poke.name)}}" class = "btn btn-danger form-control btn-outline-light" >Release</a>
+{% endif %}
+
 </div>
 
 
 </div>
 {%endif%}
 
-
+</div>
 {% endblock %}

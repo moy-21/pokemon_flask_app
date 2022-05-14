@@ -6,3 +6,6 @@ from wtforms.validators import DataRequired
 class PokemonForm(FlaskForm):
     pokemon = StringField('Pokemon', validators = [DataRequired()])
     submit = SubmitField('Search')
+
+class BattleForm(FlaskForm):
+    battle = SubmitField('Battle')
